@@ -1,6 +1,8 @@
 // src/config/config.service.ts
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
+import { Harrypotter } from 'src/harrypotter/entities/harrypotter.entity';
+import { Todo } from 'src/todo/entities/todo.entity';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -31,6 +33,13 @@ class ConfigService {
   }
 
   public getTypeOrmConfig(): TypeOrmModuleOptions {
+    console.log('Hello');
+
+    console.log(this.getValue('DATABASE_HOST'));
+    console.log(this.getValue('DATABASE_USER'));
+    console.log(this.getValue('DATABASE_PASSWORD'));
+    console.log(this.getValue('DATABASE_DBNAME'));
+
     return {
       type: 'postgres',
 
@@ -40,7 +49,7 @@ class ConfigService {
       password: this.getValue('DATABASE_PASSWORD'),
       database: this.getValue('DATABASE_DBNAME'),
 
-      entities: ['**/*.entity{.ts,.js}'],
+      entities: [Harrypotter, Todo],
 
       migrationsTableName: 'migration',
 
@@ -49,8 +58,13 @@ class ConfigService {
       cli: {
         migrationsDir: 'src/migration',
       },
-
+      synchronize: true,
       ssl: true,
+      extra: {
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      },
     };
   }
 }
