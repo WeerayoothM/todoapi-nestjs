@@ -50,7 +50,7 @@ dotenv.config();
 })
 export class AppModule {}
 // 1.47.20.244
-// host    all             all             1.47.20.244/24           md5
-// host    all             all             1.47.20.244/24           trust
-// host    all             all             1.47.20.244/0           md5
+// host    all             all             1.47.20.244/24         md5
+// host    all             all             1.47.20.244/24         trust
+// host    all             all             1.47.20.244/0          md5
 // host    all             all             1.47.20.244/0          trus
