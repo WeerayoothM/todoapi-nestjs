@@ -6,7 +6,7 @@ import { HarrypotterModule } from './harrypotter/harrypotter.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TodoModule } from './todo/todo.module';
 import { Todo } from './todo/entities/todo.entity';
-import { ConfigModule } from '@nestjs/config';
+// import { ConfigModule } from '@nestjs/config';
 // import { configService } from './config/configService';
 
 import * as dotenv from 'dotenv';
