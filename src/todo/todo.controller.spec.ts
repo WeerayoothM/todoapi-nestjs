@@ -5,7 +5,12 @@ import { TodoService } from './todo.service';
 describe('TodoController', () => {
   let controller: TodoController;
 
-  const mockTodoService = {};
+  const mockTodoService = {
+    create: jest.fn((dto) => ({
+      id: Date.now(),
+      ...dto,
+    })),
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -21,5 +26,13 @@ describe('TodoController', () => {
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
+  });
+
+  it('should create a user', () => {
+    expect(controller.create({ title: 'neko', detail: '' })).toEqual({
+      id: expect.any(Number),
+      title: 'neko',
+      detail: '',
+    });
   });
 });
